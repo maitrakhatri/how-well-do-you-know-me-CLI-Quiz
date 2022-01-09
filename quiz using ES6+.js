@@ -1,12 +1,12 @@
-var readlineSync = require('readline-sync');
+const readlineSync = require('readline-sync'); //used const and let, previously all were var
 
-var playerName = readlineSync.question("Enter your Name: ");
+const playerName = readlineSync.question("Enter your Name: ");
 
-console.log("Welcome " + playerName + " !!")
+console.log(`Welcome ${playerName} !!`) //used string literals for all console logs with variables
 console.log("Let's see how well do you know Maitra")
 
-var score = 0
-var highestScore = [
+let score = 0
+const highestScore = [
 
   {
     name: "Maitra",
@@ -19,11 +19,7 @@ var highestScore = [
   }
 ]
 
-
-
-//var questions = [que1,que2,que3, que4]
-
-var questions = [
+const questions = [
   {
     que: "What's my full name?: ",
     ans: "Khatri Maitra Bharatbhai"
@@ -57,29 +53,28 @@ var questions = [
 
 ]
 
+//replaced normal function by arrow function
 
-
-function play(currentQue) {
-  var userAns = readlineSync.question(currentQue.que)
+const play = currentQue => {
+  const userAns = readlineSync.question(currentQue.que)
   if (userAns === currentQue.ans) {
     console.log("You are correct !!")
     score = score + 1;
-    console.log("Your current Score: ", score)
+    console.log(`Your current Score: ${score}`);
     console.log("---------------------")
   }
   else {
     console.log("You are incorrect :(")
-    console.log("Your current Score: ", score)
+    console.log(`Your current Score: ${score}`);
     console.log("---------------------")
   }
 }
 
-for (i = 0; i < questions.length; i++) {
-  var currentQue = questions[i];
-  play(currentQue)
-}
+//used map instead of for loop for questions
 
-console.log("Your final score is: ", score)
+questions.map(play)
+
+console.log(`Your final score is: ${score}`);
 console.log("---------------------")
 console.log("Share this and challenge your friends who claim to know Maitra better than you")
 
